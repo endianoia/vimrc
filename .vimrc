@@ -157,8 +157,6 @@ au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vspli
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 
-"Enable neocomplete
-let g:neocomplete#enable_at_startup = 1
 
 "NERDTree keymap
 nnoremap :tree :NERDTreeToggle
