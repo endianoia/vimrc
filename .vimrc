@@ -43,6 +43,8 @@ NeoBundle 'suy/vim-ctrlp-commandline'
 NeoBundle 'rking/ag.vim'
 " プロジェクトに入ってるESLintを読み込む
 NeoBundle 'pmsorhaindo/syntastic-local-eslint.vim'
+"ファイル操作
+NeoBundle 'Shougo/unite.vim'
 
 " vimのlua機能が使える時だけ以下のVimプラグインをインストールする
 if has('lua')
