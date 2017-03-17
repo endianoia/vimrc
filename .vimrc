@@ -33,6 +33,8 @@ NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'bronson/vim-trailing-whitespace'
 " 構文エラーチェック
 NeoBundle 'scrooloose/syntastic'
+"NERDTree
+NeoBundle 'scrooloose/nerdtree'
 " 多機能セレクタ
 NeoBundle 'ctrlpvim/ctrlp.vim'
 " CtrlPの拡張プラグイン. 関数検索
@@ -154,6 +156,12 @@ au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vspli
 "finish by 2times esc
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
+
+"Enable neocomplete
+let g:neocomplete#enable_at_startup = 1
+
+"NERDTree keymap
+nnoremap :tree :NERDTreeToggle
 
 " バックスペースキーの有効化
 set backspace=indent,eol,start
