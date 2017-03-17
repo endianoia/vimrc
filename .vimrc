@@ -136,6 +136,25 @@ nnoremap <Down> <Nop>
 nnoremap <Left> <Nop>
 nnoremap <Right> <Nop>
 
+"Unite.vim Settings
+"list buffer
+nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
+"list file
+nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=file file<CR>
+"list register
+nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
+"list most recent file
+nnoremap <silent> <um :<C-u>Unite file_mru<CR>
+"split window open
+au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+au FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+"split window vertically
+au FileType unite nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+"finish by 2times esc
+au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
+au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
+
 " バックスペースキーの有効化
 set backspace=indent,eol,start
 
