@@ -56,6 +56,10 @@ NeoBundle 'tsuyoshiwada/slack-memo-vim', {'depends': 'mattn/webapi-vim'}
 NeoBundle 'mattn/gist-vim', {'depends': 'mattn/webapi-vim'}
 "open browser
 "NeoBundle 'open-browser.vim'
+"caw for commentout
+NeoBundle 'tyru/caw.vim.git'
+"memolist
+NeoBundle 'glidenote/memolist.vim'
 
 
 " vimのlua機能が使える時だけ以下のVimプラグインをインストールする
@@ -264,6 +268,16 @@ inoremap <silent> jj <ESC>
 "let g:newrw_nogx = 1 " disable newrt's gx mapping
 "nmap gx <Plug>(openbrowser-smart-search)
 "vmap gx <Plug>(openbrowser-smart-search)
+
+nmap <Leader>c <Plug>(caw:hatpos:toggle)
+vmap <Leader>c <Plug>(caw:hatpos:toggle)
+
+"memolist settings
+let g:memolist_path = "$HOME/memo"
+nnoremap <Leader>mn :MemoNew<CR>
+nnoremap <Leader>ml :Memolist<CR>
+nnoremap <Leader> mg :MemoGrep<CR>
+
 
 "----------------------------------------------------------
 " カッコ・タグの対応
