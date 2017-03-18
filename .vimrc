@@ -54,6 +54,8 @@ NeoBundle 'mattn/webapi-vim'
 NeoBundle 'tsuyoshiwada/slack-memo-vim', {'depends': 'mattn/webapi-vim'}
 "Gist Vim
 NeoBundle 'mattn/gist-vim', {'depends': 'mattn/webapi-vim'}
+"open browser
+"NeoBundle 'open-browser.vim'
 
 
 " vimのlua機能が使える時だけ以下のVimプラグインをインストールする
@@ -258,6 +260,10 @@ endfunction
 
 "jj便利
 inoremap <silent> jj <ESC>
+
+"let g:newrw_nogx = 1 " disable newrt's gx mapping
+"nmap gx <Plug>(openbrowser-smart-search)
+"vmap gx <Plug>(openbrowser-smart-search)
 
 "----------------------------------------------------------
 " カッコ・タグの対応
