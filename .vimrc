@@ -172,6 +172,9 @@ set statusline+=%{fugitive#statusline()}
 " バックスペースキーの有効化
 set backspace=indent,eol,start
 
+"jj便利
+inoremap <silent> jj <ESC>
+
 "----------------------------------------------------------
 " カッコ・タグの対応
 "----------------------------------------------------------
