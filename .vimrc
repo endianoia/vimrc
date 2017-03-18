@@ -186,6 +186,9 @@ if filereadable(expand('~/.vimrc.local'))
   source ~/.vimrc.local
 endif
 
+"clipboard expand
+set clipboard=unnamed
+
 "lightline settings
 let g:lightline = {
       \ 'active': {
