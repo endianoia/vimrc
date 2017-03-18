@@ -49,6 +49,9 @@ NeoBundle 'pmsorhaindo/syntastic-local-eslint.vim'
 NeoBundle 'Shougo/unite.vim'
 "Vim for Git
 NeoBundle 'tpope/vim-fugitive'
+"Slack integration
+NeoBundle 'mattn/webapi-vim'
+NeoBundle 'tsuyoshiwada/slack-memo-vim', {'depends': 'mattn/webapi-vim'}
 
 " vimのlua機能が使える時だけ以下のVimプラグインをインストールする
 if has('lua')
@@ -169,11 +172,16 @@ autocmd QuickFixCmdPost *grep* cwindow
 " バックスペースキーの有効化
 set backspace=indent,eol,start
 
+"slack integration
+if filereadable(expand('~/.vimrc.local'))
+  source ~/.vimrc.local
+endif
+
 "lightline settings
 let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'fugitive', 'filename' ] 
+      \             [ 'fugitive', 'filename' ]
       \   ],
       \   'right': [ [ 'syntastic', 'lineinfo' ],
       \             [ 'percent' ],
@@ -230,7 +238,7 @@ function! MyFileencoding()
 endfunction
 
 function! MyMode()
-  return &ft == 'vimfiler' ? 'VimFiler' : 
+  return &ft == 'vimfiler' ? 'VimFiler' :
         \ &ft == 'unite' ? 'Unite' :
         \ &ft == 'vimshell' ? 'VimShell' :
         \ winwidth('.') > 60 ? lightline#mode() : ''
