@@ -166,9 +166,6 @@ nnoremap :tree :NERDTreeToggle
 "vim-fugitive setting
 autocmd QuickFixCmdPost *grep* cwindow
 
-"show current git branch
-set statusline+=%{fugitive#statusline()}
-
 " バックスペースキーの有効化
 set backspace=indent,eol,start
 
