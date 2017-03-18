@@ -217,6 +217,13 @@ highlight PmenuSel ctermbg=1
 highlight PmenuSbar ctermbg=4
 "補完ウインドウの設定
 set completeopt=menuone
+"入力補完
+for k in split("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",'\zs')
+  exec "imap " . k . " " . k . "<C-N><C-P>"
+endfor
+
+imap <expr> <TAB> pumvisible() ? "\<Down>" : "\<Tab>"
+
 "rsenseでの自動補完機能を有効化
 let g:rsenseUseOmniFunc = 1
 "auto-ctagsを使ってファイル保存時にtagsファイル更新
