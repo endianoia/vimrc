@@ -60,6 +60,8 @@ NeoBundle 'mattn/gist-vim', {'depends': 'mattn/webapi-vim'}
 NeoBundle 'tyru/caw.vim.git'
 "memolist
 NeoBundle 'glidenote/memolist.vim'
+"quickrun
+NeoBundle 'thinca/vim-quickrun'
 
 
 " vimのlua機能が使える時だけ以下のVimプラグインをインストールする
@@ -280,6 +282,9 @@ let g:memolist_path = "$HOME/memo"
 nnoremap <Leader>mn :MemoNew<CR>
 nnoremap <Leader>ml :Memolist<CR>
 nnoremap <Leader> mg :MemoGrep<CR>
+
+"quickrun settings
+let g:quickrun_config={'*': {'vsplit': ''}}
 
 
 "----------------------------------------------------------
