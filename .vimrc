@@ -47,6 +47,8 @@ NeoBundle 'rking/ag.vim'
 NeoBundle 'pmsorhaindo/syntastic-local-eslint.vim'
 "ファイル操作
 NeoBundle 'Shougo/unite.vim'
+"Vim for Git
+NeoBundle 'tpope/vim-fugitive'
 
 " vimのlua機能が使える時だけ以下のVimプラグインをインストールする
 if has('lua')
@@ -161,6 +163,12 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 "NERDTree keymap
 nnoremap :tree :NERDTreeToggle
 
+"vim-fugitive setting
+autocmd QuickFixCmdPost *grep* cwindow
+
+"show current git branch
+set statusline+=%{fugitive#statusline()}
+
 " バックスペースキーの有効化
 set backspace=indent,eol,start
 
@@ -204,6 +212,16 @@ endif
 "----------------------------------------------------------
 " neocomplete・neosnippetの設定
 "----------------------------------------------------------
+highlight Pmenu ctermbg=4
+highlight PmenuSel ctermbg=1
+highlight PmenuSbar ctermbg=4
+"補完ウインドウの設定
+set completeopt=menuone
+"rsenseでの自動補完機能を有効化
+let g:rsenseUseOmniFunc = 1
+"auto-ctagsを使ってファイル保存時にtagsファイル更新
+let g:auto_ctags = 1
+
 if neobundle#is_installed('neocomplete.vim')
     " Vim起動時にneocompleteを有効にする
     let g:neocomplete#enable_at_startup = 1
