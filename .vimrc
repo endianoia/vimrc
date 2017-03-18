@@ -52,6 +52,9 @@ NeoBundle 'tpope/vim-fugitive'
 "Slack integration
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'tsuyoshiwada/slack-memo-vim', {'depends': 'mattn/webapi-vim'}
+"Gist Vim
+NeoBundle 'mattn/gist-vim', {'depends': 'mattn/webapi-vim'}
+
 
 " vimのlua機能が使える時だけ以下のVimプラグインをインストールする
 if has('lua')
