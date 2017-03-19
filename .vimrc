@@ -62,6 +62,8 @@ NeoBundle 'tyru/caw.vim.git'
 NeoBundle 'glidenote/memolist.vim'
 "quickrun
 NeoBundle 'thinca/vim-quickrun'
+"関数アウトライン表示
+NeoBundle 'Shougo/unite-outline'
 
 
 " vimのlua機能が使える時だけ以下のVimプラグインをインストールする
