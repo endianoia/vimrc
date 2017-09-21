@@ -33,8 +33,6 @@ NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'bronson/vim-trailing-whitespace'
 " 構文エラーチェック
 NeoBundle 'scrooloose/syntastic'
-"NERDTree
-NeoBundle 'scrooloose/nerdtree'
 " 多機能セレクタ
 NeoBundle 'ctrlpvim/ctrlp.vim'
 " CtrlPの拡張プラグイン. 関数検索
@@ -45,25 +43,8 @@ NeoBundle 'suy/vim-ctrlp-commandline'
 NeoBundle 'rking/ag.vim'
 " プロジェクトに入ってるESLintを読み込む
 NeoBundle 'pmsorhaindo/syntastic-local-eslint.vim'
-"ファイル操作
-NeoBundle 'Shougo/unite.vim'
-"Vim for Git
-NeoBundle 'tpope/vim-fugitive'
-"Slack integration
-NeoBundle 'mattn/webapi-vim'
-NeoBundle 'tsuyoshiwada/slack-memo-vim', {'depends': 'mattn/webapi-vim'}
-"Gist Vim
-NeoBundle 'mattn/gist-vim', {'depends': 'mattn/webapi-vim'}
-"open browser
-"NeoBundle 'open-browser.vim'
-"caw for commentout
-NeoBundle 'tyru/caw.vim.git'
-"memolist
-NeoBundle 'glidenote/memolist.vim'
-"quickrun
-NeoBundle 'thinca/vim-quickrun'
-"関数アウトライン表示
-NeoBundle 'Shougo/unite-outline'
+"Twitter Client
+NeoBundle 'twitvim/twitvim.git'
 
 
 " vimのlua機能が使える時だけ以下のVimプラグインをインストールする
@@ -121,11 +102,11 @@ set history=5000 " 保存するコマンド履歴の数
 " タブ・インデント
 "----------------------------------------------------------
 set expandtab " タブ入力を複数の空白入力に置き換える
-set tabstop=4 " 画面上でタブ文字が占める幅
-set softtabstop=4 " 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
+set tabstop=2 " 画面上でタブ文字が占める幅
+set softtabstop=2 " 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
 set autoindent " 改行時に前の行のインデントを継続する
 set smartindent " 改行時に前の行の構文をチェックし次の行のインデントを増減する
-set shiftwidth=4 " smartindentで増減する幅
+set shiftwidth=2 " smartindentで増減する幅
 
 "----------------------------------------------------------
 " 文字列検索
@@ -155,139 +136,10 @@ nnoremap <Up> <Nop>
 nnoremap <Down> <Nop>
 nnoremap <Left> <Nop>
 nnoremap <Right> <Nop>
-
-"Unite.vim Settings
-"list buffer
-nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
-"list file
-nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=file file<CR>
-"list register
-nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
-"list most recent file
-nnoremap <silent> <um :<C-u>Unite file_mru<CR>
-"split window open
-au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
-au FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
-"split window vertically
-au FileType unite nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
-au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
-"finish by 2times esc
-au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
-au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
-
-
-"NERDTree keymap
-nnoremap :tree :NERDTreeToggle
-
-"vim-fugitive setting
-autocmd QuickFixCmdPost *grep* cwindow
+inoremap <silent> jj <ESC>
 
 " バックスペースキーの有効化
 set backspace=indent,eol,start
-
-"slack integration
-if filereadable(expand('~/.vimrc.local'))
-  source ~/.vimrc.local
-endif
-
-"clipboard expand
-set clipboard=unnamed
-
-"lightline settings
-let g:lightline = {
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'fugitive', 'filename' ]
-      \   ],
-      \   'right': [ [ 'syntastic', 'lineinfo' ],
-      \             [ 'percent' ],
-      \             [ 'skkstatus', 'fileformat', 'fileencoding', 'filetype' ]
-      \   ]
-      \ },
-      \ 'component_function': {
-      \   'modified': 'MyModified',
-      \   'readonly': 'MyReadonly',
-      \   'fugitive': 'MyFugitive',
-      \   'filename': 'MyFilename',
-      \   'fileformat': 'MyFileformat',
-      \   'filetype': 'MyFiletype',
-      \   'mode': 'MyMode',
-      \   'skkstatus': 'MySkkgetmode'
-      \ },
-      \ 'component_expand': {
-      \   'syntastic': 'SyntasticStatuslineFlag'
-      \ },
-      \ 'component_type': {
-      \   'syntastic': 'error'
-      \ }
-      \ }
-
-function! MyModified()
-  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
-endfunction
-
-function! MyReadonly()
-  return &ft !~? 'help\|vimfiler\|gundo' && &ro ? ' ' : ''
-endfunction
-
-function! MyFugitive()
-  try
-    if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
-      let _ = fugitive#head()
-      return strlen(_) ? ' '._ : ''
-    endif
-  catch
-  endtry
-  return ''
-endfunction
-
-function! MyFileformat()
-  return winwidth('.') > 70 ? &fileformat : ''
-endfunction
-
-function! MyFiletype()
-  return winwidth('.') > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
-endfunction
-
-function! MyFileencoding()
-  return winwidth('.') > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
-endfunction
-
-function! MyMode()
-  return &ft == 'vimfiler' ? 'VimFiler' :
-        \ &ft == 'unite' ? 'Unite' :
-        \ &ft == 'vimshell' ? 'VimShell' :
-        \ winwidth('.') > 60 ? lightline#mode() : ''
-endfunction
-
-function! MyFilename()
-  return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
-        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
-        \  &ft == 'unite' ? unite#get_status_string() :
-        \  &ft == 'vimshell' ? substitute(b:vimshell.current_dir,expand('~'),'~','') :
-        \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
-        \ ('' != MyModified() ? ' ' . MyModified() : '')
-endfunction
-
-"jj便利
-inoremap <silent> jj <ESC>
-
-"let g:newrw_nogx = 1 " disable newrt's gx mapping
-"nmap gx <Plug>(openbrowser-smart-search)
-"vmap gx <Plug>(openbrowser-smart-search)
-
-nmap <Leader>c <Plug>(caw:hatpos:toggle)
-vmap <Leader>c <Plug>(caw:hatpos:toggle)
-
-"memolist settings
-let g:memolist_path = "$HOME/memo"
-nnoremap <Leader>mn :MemoNew<CR>
-nnoremap <Leader>ml :Memolist<CR>
-nnoremap <Leader> mg :MemoGrep<CR>
-
-"quickrun settings
-let g:quickrun_config={'*': {'vsplit': ''}}
-
 
 "----------------------------------------------------------
 " カッコ・タグの対応
@@ -329,23 +181,6 @@ endif
 "----------------------------------------------------------
 " neocomplete・neosnippetの設定
 "----------------------------------------------------------
-highlight Pmenu ctermbg=4
-highlight PmenuSel ctermbg=1
-highlight PmenuSbar ctermbg=4
-"補完ウインドウの設定
-set completeopt=menuone
-"入力補完
-for k in split("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",'\zs')
-  exec "imap " . k . " " . k . "<C-N><C-P>"
-endfor
-
-imap <expr> <TAB> pumvisible() ? "\<Down>" : "\<Tab>"
-
-"rsenseでの自動補完機能を有効化
-let g:rsenseUseOmniFunc = 1
-"auto-ctagsを使ってファイル保存時にtagsファイル更新
-let g:auto_ctags = 1
-
 if neobundle#is_installed('neocomplete.vim')
     " Vim起動時にneocompleteを有効にする
     let g:neocomplete#enable_at_startup = 1
@@ -405,3 +240,15 @@ if executable('ag')
   let g:ctrlp_use_caching=0 " CtrlPのキャッシュを使わない
   let g:ctrlp_user_command='ag %s -i --hidden -g ""' " 「ag」の検索設定
 endif
+
+" TwitVim Settings
+let twitvim_count = 40
+nnoremap ,tp :<C-u>PosttoTwitter<CR>
+nnoremap ,tf :<C-u>FriendsTwitter<CR><C-w>j
+nnoremap ,tu :<C-u>UserTwitter<CR><C-w>j
+nnoremap ,tr :<C-u>RepliesTwitter<CR><C-w>j
+nnoremap ,tn :<C-u>NextTwitter<CR>
+autocmd FileType twitvim call s:twitvim_my_settings()
+function! s:twitvim_my_settings()
+  set nowrap
+endfunction
