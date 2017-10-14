@@ -20,65 +20,64 @@ endif
 
 call neobundle#begin(expand('~/.vim/bundle/'))
 
-" インストールするVimプラグインを以下に記述
-" NeoBundle自身を管理
+" My NeoBundle Plugins
+" Vim Plugin Manager
 NeoBundleFetch 'Shougo/neobundle.vim'
-" カラースキームmolokai
+" Color Scheme
 NeoBundle 'tomasr/molokai'
-" ステータスラインの表示内容強化
+" Status Line Enhancement
 NeoBundle 'itchyny/lightline.vim'
-" インデントの可視化
+" Visible Intdent
 NeoBundle 'Yggdroot/indentLine'
-" 末尾の全角半角空白文字を赤くハイライト
+" Highlight Spaces At End
 NeoBundle 'bronson/vim-trailing-whitespace'
-" 構文エラーチェック
+" Error Check for Syntastic
 NeoBundle 'scrooloose/syntastic'
-" 多機能セレクタ
+" Enhance With Ctrl P
 NeoBundle 'ctrlpvim/ctrlp.vim'
-" CtrlPの拡張プラグイン. 関数検索
+" Enhance ctrlp: search functions
 NeoBundle 'tacahiroy/ctrlp-funky'
-" CtrlPの拡張プラグイン. コマンド履歴検索
+" Enhance ctrlp: search command history
 NeoBundle 'suy/vim-ctrlp-commandline'
-" CtrlPの検索にagを使う
+" Use ag for ctrlp search
 NeoBundle 'rking/ag.vim'
-" プロジェクトに入ってるESLintを読み込む
+" Load eslint in PJ
 NeoBundle 'pmsorhaindo/syntastic-local-eslint.vim'
-"Twitter Client
+" Twitter Client
 NeoBundle 'twitvim/twitvim.git'
-"vim-go
+" Vim for Go
 NeoBundle 'fatih/vim-go'
 
-" vimのlua機能が使える時だけ以下のVimプラグインをインストールする
+" Plugins with lua
 if has('lua')
-    " コードの自動補完
+    " Code Auto-Complete
     NeoBundle 'Shougo/neocomplete.vim'
-    " スニペットの補完機能
+    " Snippet Auto-Complete
     NeoBundle "Shougo/neosnippet"
-    " スニペット集
+    " Snippets
     NeoBundle 'Shougo/neosnippet-snippets'
 endif
 
 call neobundle#end()
 
-" ファイルタイプ別のVimプラグイン/インデントを有効にする
 filetype plugin indent on
 
-" 未インストールのVimプラグインがある場合、インストールするかどうかを尋ねてくれるようにする設定
+" Check notyet installed Plugins in vimrc
 NeoBundleCheck
 
 "----------------------------------------------------------
-" カラースキーム
+" Color Scheme
 "----------------------------------------------------------
 if neobundle#is_installed('molokai')
     autocmd colorscheme molokai highlight Visual ctermbg=8
-    colorscheme molokai " カラースキームにmolokaiを設定する
+    colorscheme molokai
 endif
 
 set t_Co=256 " iTerm2など既に256色環境なら無くても良い
 syntax enable " 構文に色を付ける
 
 "----------------------------------------------------------
-" 文字
+" Encoding
 "----------------------------------------------------------
 set fileencoding=utf-8 " 保存時の文字コード
 set fileencodings=ucs-boms,utf-8,euc-jp,cp932 " 読み込み時の文字コードの自動判別. 左側が優先される
@@ -86,7 +85,7 @@ set fileformats=unix,dos,mac " 改行コードの自動判別. 左側が優先�
 set ambiwidth=double " □や○文字が崩れる問題を解決
 
 "----------------------------------------------------------
-" ステータスライン
+" Status Line
 "----------------------------------------------------------
 set laststatus=2 " ステータスラインを常に表示
 set showmode " 現在のモードを表示
@@ -94,13 +93,13 @@ set showcmd " 打ったコマンドをステータスラインの下に表示
 set ruler " ステータスラインの右側にカーソルの位置を表示する
 
 "----------------------------------------------------------
-" コマンドモード
+" Command Mode
 "----------------------------------------------------------
 set wildmenu " コマンドモードの補完
 set history=5000 " 保存するコマンド履歴の数
 
 "----------------------------------------------------------
-" タブ・インデント
+" Tab and Indent
 "----------------------------------------------------------
 set expandtab " タブ入力を複数の空白入力に置き換える
 set tabstop=2 " 画面上でタブ文字が占める幅
@@ -110,7 +109,7 @@ set smartindent " 改行時に前の行の構文をチェックし次の行の�
 set shiftwidth=2 " smartindentで増減する幅
 
 "----------------------------------------------------------
-" 文字列検索
+" Search Strings
 "----------------------------------------------------------
 set incsearch " インクリメンタルサーチ. １文字入力毎に検索を行う
 set ignorecase " 検索パターンに大文字小文字を区別しない
@@ -121,7 +120,7 @@ set hlsearch " 検索結果をハイライト
 nnoremap <silent><Esc><Esc> :<C-u>set nohlsearch!<CR>
 
 "----------------------------------------------------------
-" カーソル
+" Cursor
 "----------------------------------------------------------
 set whichwrap=b,s,h,l,<,>,[,],~ " カーソルの左右移動で行末から次の行の行頭への移動が可能になる
 set number " 行番号を表示
@@ -163,7 +162,7 @@ if has('mouse')
 endif
 
 "----------------------------------------------------------
-" クリップボードからのペースト
+" Paste From Clipboard
 "----------------------------------------------------------
 " 挿入モードでクリップボードからペーストする時に自動でインデントさせないようにする
 if &term =~ "xterm"
@@ -180,7 +179,7 @@ if &term =~ "xterm"
 endif
 
 "----------------------------------------------------------
-" neocomplete・neosnippetの設定
+" neocomplete・neosnippet settings
 "----------------------------------------------------------
 if neobundle#is_installed('neocomplete.vim')
     " Vim起動時にneocompleteを有効にする
