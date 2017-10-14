@@ -45,7 +45,8 @@ NeoBundle 'rking/ag.vim'
 NeoBundle 'pmsorhaindo/syntastic-local-eslint.vim'
 "Twitter Client
 NeoBundle 'twitvim/twitvim.git'
-
+"vim-go
+NeoBundle 'fatih/vim-go'
 
 " vimのlua機能が使える時だけ以下のVimプラグインをインストールする
 if has('lua')
