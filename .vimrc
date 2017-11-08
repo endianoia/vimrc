@@ -29,14 +29,14 @@ Plug 'rking/ag.vim'
 " Load eslint in PJ
 Plug 'pmsorhaindo/syntastic-local-eslint.vim'
 " Twitter Client
-Plug 'twitvim/twitvim.git'
+Plug 'twitvim/twitvim'
 " Vim for Go
 Plug 'fatih/vim-go'
 call plug#end()
 
-" let g:molokai_original = 1
 set t_Co=256 " iTerm2など既に256色環境なら無くても良い
 syntax enable " 構文に色を付ける
+colorscheme molokai
 
 "----------------------------------------------------------
 " Encoding
