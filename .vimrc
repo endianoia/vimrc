@@ -5,74 +5,36 @@ scriptencoding utf-8
 " Vim scritptにvimrcも含まれるので、日本語でコメントを書く場合は先頭にこの設定が必要になる
 
 "----------------------------------------------------------
-" NeoBundle
+" Plug
 "----------------------------------------------------------
-if has('vim_starting')
-    " 初回起動時のみruntimepathにNeoBundleのパスを指定する
-    set runtimepath+=~/.vim/bundle/neobundle.vim/
-
-    " NeoBundleが未インストールであればgit cloneする
-    if !isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
-        echo "install NeoBundle..."
-        :call system("git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim")
-    endif
-endif
-
-call neobundle#begin(expand('~/.vim/bundle/'))
-
-" My NeoBundle Plugins
-" Vim Plugin Manager
-NeoBundleFetch 'Shougo/neobundle.vim'
+call plug#begin('~/.vim/plugged')
 " Color Scheme
-NeoBundle 'tomasr/molokai'
+Plug 'tomasr/molokai'
 " Status Line Enhancement
-NeoBundle 'itchyny/lightline.vim'
+Plug 'itchyny/lightline.vim'
 " Visible Intdent
-NeoBundle 'Yggdroot/indentLine'
+Plug 'Yggdroot/indentLine'
 " Highlight Spaces At End
-NeoBundle 'bronson/vim-trailing-whitespace'
+Plug 'bronson/vim-trailing-whitespace'
 " Error Check for Syntastic
-NeoBundle 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 " Enhance With Ctrl P
-NeoBundle 'ctrlpvim/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 " Enhance ctrlp: search functions
-NeoBundle 'tacahiroy/ctrlp-funky'
+Plug 'tacahiroy/ctrlp-funky'
 " Enhance ctrlp: search command history
-NeoBundle 'suy/vim-ctrlp-commandline'
+Plug 'suy/vim-ctrlp-commandline'
 " Use ag for ctrlp search
-NeoBundle 'rking/ag.vim'
+Plug 'rking/ag.vim'
 " Load eslint in PJ
-NeoBundle 'pmsorhaindo/syntastic-local-eslint.vim'
+Plug 'pmsorhaindo/syntastic-local-eslint.vim'
 " Twitter Client
-NeoBundle 'twitvim/twitvim.git'
+Plug 'twitvim/twitvim.git'
 " Vim for Go
-NeoBundle 'fatih/vim-go'
+Plug 'fatih/vim-go'
+call plug#end()
 
-" Plugins with lua
-if has('lua')
-    " Code Auto-Complete
-    NeoBundle 'Shougo/neocomplete.vim'
-    " Snippet Auto-Complete
-    NeoBundle "Shougo/neosnippet"
-    " Snippets
-    NeoBundle 'Shougo/neosnippet-snippets'
-endif
-
-call neobundle#end()
-
-filetype plugin indent on
-
-" Check notyet installed Plugins in vimrc
-NeoBundleCheck
-
-"----------------------------------------------------------
-" Color Scheme
-"----------------------------------------------------------
-if neobundle#is_installed('molokai')
-    autocmd colorscheme molokai highlight Visual ctermbg=8
-    colorscheme molokai
-endif
-
+" let g:molokai_original = 1
 set t_Co=256 " iTerm2など既に256色環境なら無くても良い
 syntax enable " 構文に色を付ける
 
@@ -176,29 +138,6 @@ if &term =~ "xterm"
     endfunction
 
     inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
-endif
-
-"----------------------------------------------------------
-" neocomplete・neosnippet settings
-"----------------------------------------------------------
-if neobundle#is_installed('neocomplete.vim')
-    " Vim起動時にneocompleteを有効にする
-    let g:neocomplete#enable_at_startup = 1
-    " smartcase有効化. 大文字が入力されるまで大文字小文字の区別を無視する
-    let g:neocomplete#enable_smart_case = 1
-    " 3文字以上の単語に対して補完を有効にする
-    let g:neocomplete#min_keyword_length = 3
-    " 区切り文字まで補完する
-    let g:neocomplete#enable_auto_delimiter = 1
-    " 1文字目の入力から補完のポップアップを表示
-    let g:neocomplete#auto_completion_start_length = 1
-    " バックスペースで補完のポップアップを閉じる
-    inoremap <expr><BS> neocomplete#smart_close_popup()."<C-h>"
-
-    " エンターキーで補完候補の確定. スニペットの展開もエンターキーで確定
-    imap <expr><CR> neosnippet#expandable() ? "<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "<C-y>" : "<CR>"
-    " タブキーで補完候補の選択. スニペット内のジャンプもタブキーでジャンプ
-    imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
 endif
 
 "----------------------------------------------------------
