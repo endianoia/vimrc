@@ -101,6 +101,7 @@ if &term =~ "xterm"
 
     inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
 endif
+set clipboard=unnamed,autoselect
 
 " Syntastic
 " 構文エラー行に「>>」を表示
