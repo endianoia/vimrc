@@ -26,7 +26,7 @@ syntax enable
 " Color Scheme
 set background=dark
 try
-  colorscheme solarized
+  colorscheme molokai
 catch
 endtry
 set t_Co=256
