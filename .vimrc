@@ -26,7 +26,7 @@ syntax enable
 " Color Scheme
 set background=dark
 try
-  colorscheme solarized
+  colorscheme molokai
 catch
 endtry
 set t_Co=256
@@ -101,6 +101,7 @@ if &term =~ "xterm"
 
     inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
 endif
+set clipboard=unnamed,autoselect
 
 " Syntastic
 " 構文エラー行に「>>」を表示
