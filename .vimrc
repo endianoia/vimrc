@@ -17,6 +17,7 @@ Plug 'tacahiroy/ctrlp-funky'
 Plug 'suy/vim-ctrlp-commandline'
 Plug 'rking/ag.vim'
 Plug 'pmsorhaindo/syntastic-local-eslint.vim'
+Plug 'tpope/vim-fugitive'
 Plug 'twitvim/twitvim'
 Plug 'fatih/vim-go'
 call plug#end()
@@ -66,15 +67,6 @@ set whichwrap=b,s,h,l,<,>,[,],~
 set number
 set cursorline
 set backspace=indent,eol,start
-" 行が折り返し表示されていた場合、行単位ではなく表示行単位でカーソルを移動する
-"nnoremap j gj
-"nnoremap k gk
-"nnoremap <down> gj
-"nnoremap <up> gk
-"nnoremap <Up> <Nop>
-"nnoremap <Down> <Nop>
-"nnoremap <Left> <Nop>
-"nnoremap <Right> <Nop>
 inoremap <silent> jj <ESC>
 source $VIMRUNTIME/macros/matchit.vim " Vimの「%」を拡張する
 if has('mouse')
@@ -132,6 +124,18 @@ if executable('ag')
   let g:ctrlp_use_caching=0
   let g:ctrlp_user_command='ag %s -i --hidden -g ""'
 endif
+
+" LightLine
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ },
+      \ }
 
 " TwitVim Settings
 let twitvim_count = 40
