@@ -71,10 +71,10 @@ set backspace=indent,eol,start
 "nnoremap k gk
 "nnoremap <down> gj
 "nnoremap <up> gk
-nnoremap <Up> <Nop>
-nnoremap <Down> <Nop>
-nnoremap <Left> <Nop>
-nnoremap <Right> <Nop>
+"nnoremap <Up> <Nop>
+"nnoremap <Down> <Nop>
+"nnoremap <Left> <Nop>
+"nnoremap <Right> <Nop>
 inoremap <silent> jj <ESC>
 source $VIMRUNTIME/macros/matchit.vim " Vimの「%」を拡張する
 if has('mouse')
